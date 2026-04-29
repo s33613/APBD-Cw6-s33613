@@ -10,7 +10,8 @@ public class AppointmentsController(IAppointmentService appointmentService) : Co
 {
 
     [HttpGet]
-    public async Task<IActionResult> GetAllReservations(string? status,string? lastName,CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAllReservations(string? status,string? lastName,
+        CancellationToken cancellationToken = default)
     {
         var res = await appointmentService.GetAllAppointments(cancellationToken,status,lastName);
         if (res.Any())
@@ -18,7 +19,8 @@ public class AppointmentsController(IAppointmentService appointmentService) : Co
         return NotFound("Appointments not found");
     }
     [HttpGet("{ID:int}")]
-    public async Task<IActionResult> GetReservation(int id,CancellationToken cancellationToken)
+    public async Task<IActionResult> GetReservation([FromRoute] int id,
+        CancellationToken cancellationToken = default)
     {
         try
         {
@@ -31,7 +33,8 @@ public class AppointmentsController(IAppointmentService appointmentService) : Co
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateReservation(CreateAppointmentRequestDto createAppointmentRequestDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateReservation([FromBody] CreateAppointmentRequestDto createAppointmentRequestDto, 
+        CancellationToken cancellationToken = default)
     {
         try
         {
@@ -53,7 +56,8 @@ public class AppointmentsController(IAppointmentService appointmentService) : Co
     }
 
     [HttpPut("{ID:int}")]
-    public async Task<IActionResult> UpdateReservation(int id,UpdateAppointmentRequestDto updateAppointmentRequestDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateReservation([FromRoute] int id,
+        [FromBody] UpdateAppointmentRequestDto updateAppointmentRequestDto, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -75,7 +79,7 @@ public class AppointmentsController(IAppointmentService appointmentService) : Co
     }
 
     [HttpDelete("{ID:int}")]
-    public async Task<IActionResult> DeleteReservation(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteReservation([FromRoute] int id, CancellationToken cancellationToken = default)
     {
         try
         {
