@@ -18,7 +18,7 @@ public class AppointmentsController(IAppointmentService appointmentService) : Co
             return Ok(res);
         return NotFound("Appointments not found");
     }
-    [HttpGet("{ID:int}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> GetReservation([FromRoute] int id,
         CancellationToken cancellationToken = default)
     {
@@ -55,7 +55,7 @@ public class AppointmentsController(IAppointmentService appointmentService) : Co
         }
     }
 
-    [HttpPut("{ID:int}")]
+    [HttpPut("{id:int}")]
     public async Task<IActionResult> UpdateReservation([FromRoute] int id,
         [FromBody] UpdateAppointmentRequestDto updateAppointmentRequestDto, CancellationToken cancellationToken = default)
     {
@@ -78,7 +78,7 @@ public class AppointmentsController(IAppointmentService appointmentService) : Co
         }
     }
 
-    [HttpDelete("{ID:int}")]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteReservation([FromRoute] int id, CancellationToken cancellationToken = default)
     {
         try
